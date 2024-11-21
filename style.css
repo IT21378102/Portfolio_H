@@ -1,0 +1,863 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: #1f242d;
+  --second-bg-color: #323946;
+  --main-color: #0ef;
+  --white-color: #fff;
+  --disabled-color: #fff3;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--white-color);
+}
+
+header {
+  position: fixed;
+  top: 0; /* Fixes the header at the top */
+  left: 0; /* Aligns the header to the left */
+  width: 100%; /* Makes the header span the full width of the page */
+  padding: 2rem 9%; /* Adds space inside the header */
+  background: var(
+    --bg-color
+  ); /* Sets the background color using the variable */
+  display: flex; /* Enables flexible layout for child elements */
+  justify-content: space-between; /* Spaces out elements evenly */
+  align-items: center; /* Aligns items vertically */
+  z-index: 100; /* Ensures the header stays above other elements */
+  visibility: hidden;
+  opacity: 0;
+}
+
+header.active {
+  animation: show-header 1.5s linear forwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes show-header {
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.logo {
+  font-size: 3rem; /* Sets the font size for the logo */
+  color: var(--white-color); /* Applies the white color variable */
+  font-weight: 700; /* Makes the logo bold */
+}
+
+nav a {
+  font-size: 2rem; /* Sets the font size for navigation links */
+  color: var(--white-color); /* Applies the white color variable */
+  font-weight: 600; /* Sets the font weight */
+  margin-left: 3.5rem; /* Adds spacing between navigation links */
+  transition: color 0.3s ease; /* Smooth transition effect for color change */
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--main-color); /* Changes link color on hover */
+}
+
+#menu-icon {
+  font-size: 4rem;
+  display: none;
+}
+
+.bars-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.bars-box .bar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  animation: hide-bars 0.5s ease-in-out both;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes hide-bars {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.bars-box.active .bar {
+  animation: show-bars 0.5s ease-in-out both;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes show-bars {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+section {
+  position: absolute;
+  width: 100%; /* Full width of the screen */
+  height: 100vh; /* Full height of the viewport */
+  padding: 10rem 9% 2rem; /* Adds padding (top, sides, bottom) */
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+}
+
+section.active {
+  animation: show-content 1.5s linear forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes show-content {
+  100% {
+    visibility: visible;
+    opacity: 1;
+    overflow: auto;
+  }
+}
+
+.home {
+  display: flex; /* Enables flexible layout for child elements */
+  align-items: center; /* Centers items vertically */
+  gap: 5rem; /* Adds space between child elements */
+}
+
+.home-detail h1 {
+  font-size: clamp(3.5rem, 10vw, 5.5rem);
+  margin-top: -20px; /* Adjust the value as needed */
+}
+
+.home-detail h3 {
+  display: inline-block;
+  font-size: 3.2rem; /* Sets a fixed font size for h2 */
+  margin-top: -1rem; 
+}
+
+.home-detail h2 {
+  display: inline-block;
+  font-size: 3.2rem; /* Sets a fixed font size for h2 */
+  margin-top: -1rem; /* Adjusts spacing to move the element slightly upward */
+}
+
+.home-detail h2 span {
+  position: relative;
+  display: inline-block;
+  color: transparent; /* Makes text invisible to highlight the stroke */
+  -webkit-text-stroke: 0.07rem #0ef; /* Adds a stroke around the text */
+  animation: display-text 16s linear infinite; /* Applies an animation */
+  animation-delay: calc(
+    -4s * var(--i)
+  ); /* Delays the animation based on the custom property */
+}
+
+@keyframes display-text {
+  25%,
+  100% {
+    display: none;
+  }
+}
+
+.home-detail h2 span::before {
+  content: attr(
+    data-text
+  ); /* Inserts the value of the `data-text` attribute as content */
+  position: absolute; /* Positions the pseudo-element relative to the span */
+  width: 0; /* Initially sets the width to 0 for animation purposes */
+  border-right: 0.2rem solid #0ef; /* Adds a vertical line effect */
+  color: #0ef; /* Sets the text color */
+  white-space: nowrap; /* Prevents text wrapping */
+  overflow: hidden; /* Hides overflowing text for an animation effect */
+  animation: fill-text 4s linear infinite;
+}
+
+@keyframes fill-text {
+  10%,
+  100% {
+    width: 0;
+  }
+  70%,
+  90% {
+    width: 100%;
+  }
+}
+
+.home-detail p {
+  font-size: 1.6rem; /* Sets font size for the paragraph */
+  margin: 1rem 2.5rem; /* Adds margin (top-bottom: 1rem, left-right: 2.5rem) */
+}
+
+.home-detail .btn-sci {
+  display: flex; /* Enables flex layout */
+  align-items: center; /* Aligns items vertically */
+  gap: 1rem; /* Adds space between the button and social media icons */
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 3rem; /* Corrected 'Irem' to '1rem' */
+  background: #0ef; /* Updated to the new main color */
+  border: 0.2rem solid #0ef; /* Updated border to the new main color */
+  border-radius: 4rem;
+  box-shadow: 1rem 1rem 3rem #0ef; /* Updated shadow to the new main color */
+  font-size: 1.6rem;
+  color: var(--bg-color);
+  font-weight: 500; /* Added font weight value */
+  transition: 0.5s; /* Fixed transition time */
+}
+
+.btn:hover {
+  background: transparent;
+  color: #0ef; /* Updated to the new main color */
+  box-shadow: none; /* Removed incorrect values */
+}
+
+.home-detail .btn-sci .sci {
+  margin-left: 2rem; /* Adds space to the left of the sci container */
+}
+
+.home-detail .btn-sci .sci a {
+  display: inline-flex; /* Ensures the links are displayed as inline-flex */
+  padding: 0.8rem; /* Adds padding around the link */
+  border: 0.2rem solid #0ef; /* Updated border to the new main color */
+  border-radius: 50%; /* Makes the link circular */
+  font-size: 2rem; /* Sets font size for the icons */
+  color: #0ef; /* Updated to the new main color */
+  margin: 0.8rem; /* Adds margin between icons */
+  transition: 0.5s; /* Adds a smooth transition effect */
+}
+
+.home-detail .btn-sci .sci a:hover {
+  background: #0ef; /* Changes background color on hover */
+  color: var(--bg-color); /* Changes text/icon color on hover */
+  box-shadow: 0 1rem 3rem #0ef; /* Updated shadow to the new main color */
+}
+
+.home-img .img-box {
+  position: relative;
+  width: 32vw; /* Sets the width of the image box to 32% of the viewport width */
+  height: 32vw; /* Sets the height of the image box to 32% of the viewport width */
+  border-radius: 50%; /* Makes the image box circular */
+  padding: 0.5rem; /* Adds padding inside the image box */
+  display: flex; /* Enables flexbox layout */
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
+  overflow: hidden; /* Hides any content outside the bounds of the image box */
+}
+
+.home-img .img-box::before,
+.home-img .img-box::after {
+  content: "";
+  position: absolute;
+  width: 50rem;
+  height: 50rem; /* Corrected '5Ørem' to '50rem' */
+  background: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    #0ef /* Updated to the new main color */
+  );
+  transform: rotate(0deg); /* Ensures the gradient is rotated */
+  animation: rotate-border 10s linear infinite;
+}
+
+.home-img .img-box::after {
+  animation-delay: -5s;
+}
+
+@keyframes rotate-border {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.home-img .img-box .img-item {
+  position: relative;
+  width: 100%; /* Makes the image item fill the entire width of the container */
+  height: 100%; /* Makes the image item fill the entire height of the container */
+  background: var(--bg-color); /* Sets the background color */
+  border-radius: 50%; /* Makes the image item circular */
+  border: 0.1rem solid var(--bg-color); /* Adds a border to the image item */
+  display: flex; /* Enables flexbox layout */
+  justify-content: center; /* Centers the content horizontally */
+  z-index: 1; /* Ensures the image item appears above other elements if they overlap */
+  overflow: hidden;
+}
+
+.home-img .img-box .img-item img {
+  position: absolute;
+  top: 0; /* Ensure no offset from the top */
+  left: 0; /* Ensure no offset from the left */
+  width: 100%; /* Make the image fill the container width */
+  height: 100%; /* Make the image fill the container height */
+  object-fit: cover; /* Crop or scale the image proportionally to fill the circle */
+  border-radius: 50%; /* Ensure the image stays circular */
+  mix-blend-mode: lighten; /* Blends the image with the background */
+}
+
+
+
+/* General Styles */
+.heading {
+  font-size: 4.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.heading span {
+  color: var(--main-color);
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+.services-container .services-box {
+  padding: 3rem 2.5rem;
+  background: var(--second-bg-color);
+  border: 0.2rem solid var(--second-bg-color);
+  border-radius: 1rem;
+  transition: 0.5s;
+}
+
+.services-container .services-box:hover {
+  border-color: var(--main-color);
+  transform: scale(1.02);
+}
+
+.services-box .icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.services-box,
+.icon i {
+  font-size: 4.5rem;
+  transition: 0.5s;
+}
+
+.services-box .icon a {
+  display: inline-flex;
+  background: var(--white-color);
+  border-radius: 50%;
+  padding: 1rem;
+  transition: 0.5s;
+}
+
+.services-box:hover .icon a {
+  background: var(--main-color);
+}
+
+.services-box .icon a i {
+  font-size: 3rem;
+  color: var(--bg-color);
+  transform: rotate(225deg);
+}
+
+.services-box .icon a:hover i {
+  transform: rotate(180deg);
+}
+
+.services-box h3 {
+  font-size: 3rem;
+  margin: 0.5rem 2rem;
+  transition: 0.5s;
+}
+
+.services-box:hover h3 {
+  color: var(--main-color);
+}
+
+.services-box {
+  font-size: 1.6rem;
+}
+
+.resume-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Adjusts layout with two columns */
+  gap: 5rem;
+}
+
+.resume-box h2 {
+  font-size: 4.5rem;
+}
+
+.resume-box p {
+  font-size: 1.6rem;
+}
+
+.resume-box .desc {
+  margin: 2rem 2.5rem;
+}
+
+.resume-box .resume-btn {
+  width: 100%; /* Full width of the container */
+  height: 5.3rem;
+  background: var(--second-bg-color);
+  border: 0.2rem solid var(--second-bg-color);
+  font-size: 1.6rem;
+  color: var(--white-color);
+  font-weight: 500;
+  margin-bottom: 2rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.resume-box .resume-btn.active {
+  border-color: var(--main-color);
+  color: var(--main-color);
+}
+
+.resume-detail {
+  display: none;
+}
+
+.resume-detail.active {
+  display: block;
+}
+
+.resume-box .heading {
+  font-size: 3.5rem;
+  text-align: left;
+}
+
+.resume-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(30rem, 1fr)
+  ); /* Adapts to available space */
+  gap: 2rem;
+  max-height: 45rem; /* Set a fixed max-height for the scrollable area */
+  overflow-y: auto; /* Makes the list scrollable vertically */
+  padding-right: 1rem; /* Add padding to ensure scrollbar visibility */
+}
+
+.resume-list::-webkit-scrollbar {
+  width: 0.7rem; /* Scrollbar width */
+}
+
+.resume-list::-webkit-scrollbar-thumb {
+  background: var(--main-color); /* Set main color for the scrollbar thumb */
+  border-radius: 1rem;
+}
+
+.resume-list:hover::-webkit-scrollbar-thumb {
+  background: var(--main-color); /* Ensures it stays the same when hovered */
+}
+
+.resume-list .resume-item {
+  background: var(--second-bg-color);
+  border-radius: 0.8rem;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.resume-item .year {
+  color: var(--main-color);
+}
+
+.resume-item h3 {
+  font-size: 2.2rem;
+}
+
+.resume-item p {
+  font-size: 1.6rem;
+}
+
+.resume-detail.skills .resume-list {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  height: auto;
+  overflow: visible;
+}
+
+.resume-detail.skills .resume-item {
+  position: relative;
+  align-items: center;
+  height: auto;
+}
+
+.resume-detail.skills .resume-item i {
+  font-size: 8.5rem;
+  transition: 0.5s; /* Corrected the transition time and syntax */
+}
+
+.resume-detail.skills .resume-item:hover i {
+  color: var(--main-color); /* Applies the main color on hover */
+}
+
+.resume-detail.skills .resume-item span {
+  position: absolute;
+  top: -20px; /* Corrected syntax for top position */
+  background: var(--white-color);
+  color: var(--bg-color);
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem; /* Corrected 'Irem' to '1rem' */
+  border-radius: 0.6rem;
+  pointer-events: none; /* Prevents interaction */
+  opacity: 0; /* Corrected 'e' to '0' for opacity */
+  transform: scale(0.9); /* Corrected scale value */
+  transition: 2s; /* Added missing semicolon */
+}
+
+.resume-detail.skills .resume-item:hover span {
+  top: -25%; /* Moves the span further up on hover */
+  opacity: 1; /* Makes it visible */
+  transform: scale(1); /* Restores the scale */
+}
+
+.resume-detail.about .resume-list {
+  height: auto;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(25rem, 1fr)
+  ); /* Corrected syntax */
+}
+
+.resume-detail.about .resume-item {
+  height: auto;
+  padding: 0 0 0.5rem; /* Corrected 'e e .5rem' to '0 0 0.5rem' */
+  background: transparent;
+}
+
+.resume-detail.about .resume-item p {
+  color: var(--main-color);
+}
+
+.resume-detail.about .resume-item p span {
+  color: var(--white-color);
+  margin-left: 1rem; /* Corrected 'Irem' to '1rem' */
+  font-size: 1.8rem;
+}
+
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+.portfolio-detail {
+  display: none;
+}
+
+.portfolio-detail.active {
+  display: block;
+}
+
+.portfolio-box .numb {
+  font-size: 8rem;
+  color: transparent;
+  line-height: 1;
+  -webkit-text-stroke: 0.07rem var(--white-color);
+}
+
+.portfolio-box h3 {
+  font-size: 3.5rem;
+  margin: 0.8rem 2rem;
+}
+
+.portfolio-box p {
+  font-size: 1.6rem;
+}
+
+.portfolio-box .tech {
+  margin: 2rem 0;
+  color: var(--main-color);
+  border-bottom: 0.1rem solid var(--white-color);
+  padding-bottom: 2rem;
+}
+.portfolio-box .live-github a {
+  position: relative;
+  display: inline-flex;
+  padding: 1.3rem;
+  font-size: 3rem;
+  color: var(--white-color);
+  border-radius: 50%;
+  background: var(--second-bg-color);
+  transition: 0.5s;
+}
+
+.portfolio-box .live-github a:hover {
+  color: var(--main-color);
+}
+
+.portfolio-box .live-github a:first-child {
+  margin-right: 1.5rem;
+}
+
+.portfolio-box .live-github a:first-child i {
+  transform: rotate(135deg);
+}
+
+.portfolio-box .live-github a span {
+  position: absolute;
+  top: -60%;
+  left: 50%; /* Adjusted to center it horizontally */
+  transform: translateX(-50%) scale(0.9);
+  font-size: 1.6rem;
+  white-space: nowrap;
+  padding: 0.5rem 1rem; /* Corrected padding */
+  border-radius: 0.6rem;
+  pointer-events: none;
+  background: var(--white-color);
+  color: var(--bg-color); /* Fixed typo with the variable */
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.portfolio-box .live-github a:hover span {
+  top: -70%;
+  opacity: 1;
+  transform: translateX(-50%) scale(1); /* Reset scale on hover */
+}
+
+.portfolio-box .portfolio-carousel {
+  width: 100%; /* Adjust the width as needed */
+  height: 45rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.portfolio-carousel .img-slide {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 2rem;
+  height: inherit;
+  transition: all 0.3s ease; /* You can adjust the transition time */
+}
+
+.portfolio-carousel .img-item {
+  height: inherit;
+  /* You can add additional styling here */
+}
+
+.portfolio-carousel .img-item img {
+  display: block;
+  margin: 0;
+  width: 100%; /* Adjust width as needed */
+  height: 45rem; /* Adjust height as needed */
+  object-fit: cover; /* Ensures the images cover the area without distortion */
+  border-radius: 1rem; /* Rounds the corners */
+}
+
+.portfolio-box.navigation {
+  text-align: right; /* Centers the text inside the portfolio box */
+  margin-top: 2rem; /* Adds space above the portfolio box */
+}
+
+.portfolio-box .navigation button {
+  display: inline-flex; /* Makes the buttons inline-flex */
+  padding: 0.4rem; /* Adds padding inside the buttons */
+  background: var(--second-bg-color); /* Sets the background color */
+  border: 0.2rem solid var(--main-color); /* Adds a border around the button */
+  border-radius: 0.6rem; /* Rounds the corners of the button */
+  font-size: 4rem; /* Sets the font size for the icons */
+  color: var(--main-color); /* Sets the color of the icons */
+  cursor: pointer; /* Changes the cursor to a pointer when hovered */
+}
+
+.portfolio-box .navigation .arrow-right {
+  margin-left: 1.5rem; /* Adds a left margin to the right arrow button */
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3rem;
+}
+
+.contact-container .contact-box:first-child {
+  align-self: center;
+}
+
+.contact-box h2 {
+  font-size: 4.5rem;
+}
+
+.contact-box p {
+  font-size: 1.6rem;
+}
+
+.contact-box .desc {
+  margin: 1.5rem 0;
+}
+
+.contact-box .contact-detail {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.contact-box .contact-detail i {
+  display: inline-flex;
+  background: var(--second-bg-color);
+  color: var(--main-color);
+  font-size: 3rem;
+  padding: 1.2rem;
+  border-radius: 0.6rem;
+  margin-right: 1.5rem;
+}
+
+.contact-box .contact-detail p:first-child {
+  color: var(--main-color);
+  margin-right: 1rem; /* Ensure proper spacing */
+}
+
+.contact-box form {
+  background: var(--second-bg-color);
+  padding: 2.5rem 3.5rem 3.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.contact-box .heading {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-box .field-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.contact-box .field-box input,
+.contact-box .field-box textarea {
+  padding: 1.5rem;
+  background: var(--bg-color);
+  border: 0.15rem solid var(--bg-color);
+  border-radius: 0.6rem;
+  font-size: 1.6rem;
+  color: var(--white-color);
+}
+
+.contact-box .field-box textarea {
+  grid-column: 1 / -1;
+  height: 26rem;
+  resize: none;
+}
+
+.contact-box .field-box input:focus,
+.contact-box .field-box textarea:focus {
+  border-color: var(--main-color);
+  outline: none;
+}
+
+.contact-box .btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: var(--main-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 0.6rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-box .btn:hover {
+  background: var(--main-color-hover);
+}
+
+/*breakpoints*/
+
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  header {
+    padding: 2rem 4%;
+  }
+  section {
+    padding: 10rem 4% 2rem;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .contact-box {
+    grid-template-columns: 1fr; /* Set to a single column for smaller screens */
+  }
+
+  .field-box {
+    margin-bottom: 1.5rem; /* Add spacing between fields inside contact-box */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #menu-icon {
+    display: block;
+  }
+
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background: var(--bg-color);
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: none;
+  }
+
+  nav.active {
+    display: block;
+  }
+  nav a {
+    display: block;
+    margin: 4rem 0;
+  }
+}
+
+/*.resume-container,
+.portfolio-container,
+.contact-container {
+  grid-template-columns: 1fr;
+}
+
+.resume-container {
+  gap: 3rem;
+}
+
+.portfolio-container {
+  order: 1; /* Changes the order in a flex container (if inside a flex parent) */
+
+
+/*.portfolio-container .portfolio-box:first-child {
+  order: 1;
+}
+
+
