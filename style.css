@@ -842,6 +842,16 @@ section.active {
   }
 }
 
+.company {
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+
+
+
+
 /*.resume-container,
 .portfolio-container,
 .contact-container {
