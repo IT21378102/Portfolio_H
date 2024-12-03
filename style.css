@@ -638,13 +638,30 @@ section.active {
   opacity: 1;
   transform: translateX(-50%) scale(1); /* Reset scale on hover */
 }
+@media (min-width: 1024px) { /* Target desktop screens */
+  .portfolio-container {
+    justify-content: start; /* Aligns the grid to the left */
+    align-items: start; /* Optionally aligns content at the top */
+  }
+
+  .portfolio-container {
+    position: relative;
+    left: 0; /* Ensures it starts from the left */
+    margin-left: 10rem; /* Adds space from the left edge */
+    
+  }
+}
 
 .portfolio-box .portfolio-carousel {
-  width: 100%; /* Adjust the width as needed */
+  width: 750px; /* Adjust the width as needed */
   height: 45rem;
   border-radius: 1rem;
   overflow: hidden;
+  position: relative;
+  top: 10em; /* Moves the element downward */
 }
+
+
 
 .portfolio-carousel .img-slide {
   display: grid;
@@ -653,6 +670,11 @@ section.active {
   gap: 2rem;
   height: inherit;
   transition: all 0.3s ease; /* You can adjust the transition time */
+  .img-slide img {
+  position: relative;
+  top: 1rem; /* Moves the image down */
+}
+
 }
 
 .portfolio-carousel .img-item {
@@ -670,7 +692,7 @@ section.active {
 }
 
 .portfolio-box.navigation {
-  text-align: right; /* Centers the text inside the portfolio box */
+  text-align: center; /* Centers the text inside the portfolio box */
   margin-top: 2rem; /* Adds space above the portfolio box */
 }
 
@@ -683,11 +705,16 @@ section.active {
   font-size: 4rem; /* Sets the font size for the icons */
   color: var(--main-color); /* Sets the color of the icons */
   cursor: pointer; /* Changes the cursor to a pointer when hovered */
+  margin-top: 55rem;
 }
 
 .portfolio-box .navigation .arrow-right {
   margin-left: 1.5rem; /* Adds a left margin to the right arrow button */
 }
+
+
+
+
 
 .contact-container {
   display: grid;
@@ -847,8 +874,39 @@ section.active {
   font-style: italic;
 }
 
+.portfolio-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
 
+.portfolio-detail {
+  flex: 1;
+  padding: 20px;
+}
 
+.portfolio-carousel {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.img-slide {
+  margin-bottom: 20px;
+}
+
+.img-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.portfolio-carousel .img-slide .img-item img {
+  width: 100%; /* Adjust the width as needed */
+  height: 400px; /* Adjust the height as needed */
+  /* Ensures the image covers the entire area without distorting */
+  /* Optional: Add margin or padding to space out the images if needed */
+}
 
 
 
